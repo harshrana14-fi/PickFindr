@@ -47,7 +47,7 @@ function configurePassport() {
 		OAUTH_CALLBACK_BASE = 'http://localhost:4000',
 	} = process.env;
 
-	if (GOOGLE_CLIENT_ID && GOOGLE_CLIENT_SECRET) {
+    if (GOOGLE_CLIENT_ID && GOOGLE_CLIENT_SECRET) {
 		passport.use(
 			new GoogleStrategy(
 				{
@@ -61,13 +61,16 @@ function configurePassport() {
 						return done(null, user);
 					} catch (err) {
 						return done(err);
-					}
+    } else {
+        // Warn if Google is not configured so routes can handle gracefully
+        console.warn('[auth] Google OAuth not configured (missing GOOGLE_CLIENT_ID/GOOGLE_CLIENT_SECRET)');
+    }
 				}
 			)
 		);
 	}
 
-	if (GITHUB_CLIENT_ID && GITHUB_CLIENT_SECRET) {
+    if (GITHUB_CLIENT_ID && GITHUB_CLIENT_SECRET) {
 		passport.use(
 			new GitHubStrategy(
 				{
@@ -82,13 +85,16 @@ function configurePassport() {
 						return done(null, user);
 					} catch (err) {
 						return done(err);
-					}
+    } else {
+        // Warn if GitHub is not configured so routes can handle gracefully
+        console.warn('[auth] GitHub OAuth not configured (missing GITHUB_CLIENT_ID/GITHUB_CLIENT_SECRET)');
+    }
 				}
 			)
 		);
 	}
 
-	if (FACEBOOK_CLIENT_ID && FACEBOOK_CLIENT_SECRET) {
+    if (FACEBOOK_CLIENT_ID && FACEBOOK_CLIENT_SECRET) {
 		passport.use(
 			new FacebookStrategy(
 				{
@@ -103,7 +109,10 @@ function configurePassport() {
 						return done(null, user);
 					} catch (err) {
 						return done(err);
-					}
+    } else {
+        // Warn if Facebook is not configured so routes can handle gracefully
+        console.warn('[auth] Facebook OAuth not configured (missing FACEBOOK_CLIENT_ID/FACEBOOK_CLIENT_SECRET)');
+    }
 				}
 			)
 		);
