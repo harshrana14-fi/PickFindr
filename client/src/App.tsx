@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Link, Route, Routes, useNavigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { SearchPage } from './pages/SearchPage';
@@ -8,7 +8,27 @@ import { HistoryPage } from './pages/HistoryPage';
 const serverOrigin = import.meta.env.VITE_SERVER_ORIGIN || 'http://localhost:4000';
 
 const Header: React.FC = () => {
-    const { user } = useAuth();
+    const { user, refresh } = useAuth();
+    const navigate = useNavigate();
+
+    const handleLogout = async (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        try {
+            await fetch(`${serverOrigin}/api/auth/logout`, {
+                method: 'GET',
+                credentials: 'include',
+            });
+            // Refresh auth state after logout
+            await refresh();
+            navigate('/');
+        } catch (err) {
+            console.error('Logout error:', err);
+            // Still refresh and navigate even if request fails
+            await refresh();
+            navigate('/');
+        }
+    };
+
     return (
         <header className="header">
             <div className="container header-inner">
@@ -20,7 +40,7 @@ const Header: React.FC = () => {
                 <div className="spacer" />
                 <div>
                     {user ? (
-                        <a className="btn" href={`${serverOrigin}/api/auth/logout`}>Logout</a>
+                        <a className="btn" href="#" onClick={handleLogout}>Logout</a>
                     ) : (
                         <>
                             <a className="btn" href={`${serverOrigin}/api/auth/google`} style={{ marginRight: 8 }}>Google</a>

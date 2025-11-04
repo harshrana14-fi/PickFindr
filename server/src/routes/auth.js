@@ -16,8 +16,15 @@ router.get('/me', (req, res) => {
 router.get('/logout', (req, res, next) => {
 	req.logout(function (err) {
 		if (err) return next(err);
-		res.clearCookie('connect.sid');
-		res.json({ ok: true });
+		req.session.destroy((destroyErr) => {
+			if (destroyErr) return next(destroyErr);
+			res.clearCookie('picfindr.sid', {
+				httpOnly: true,
+				secure: process.env.NODE_ENV === 'production',
+				sameSite: 'lax',
+			});
+			res.redirect(process.env.CLIENT_ORIGIN || 'http://localhost:5173');
+		});
 	});
 });
 
