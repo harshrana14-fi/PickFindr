@@ -181,17 +181,21 @@ Tip: After logging in via the browser, export cookies (or use `-c/-b` with curl 
 ## Visual Proof
 Add screenshots/GIFs to `docs/` and update the links below (or keep the placeholders):
 
-- OAuth login:
-  - `docs/screenshots/oauth-login.png`
-- Top Searches banner:
-  - `docs/screenshots/top-searches.png`
-- Search results + multi-select:
-  - `docs/screenshots/search-results-multiselect.png`
-- Search history section:
-  - `docs/screenshots/history-page.png`
+- Home Page :
+  <img width="1439" height="908" alt="image" src="https://github.com/user-attachments/assets/0977cec2-310f-4d90-8210-13d7728754d9" />
 
-Optionally include a short GIF walkthrough:
-- `docs/gifs/overview.gif`
+- OAuth login:
+ <img width="1579" height="966" alt="image" src="https://github.com/user-attachments/assets/ffaf9afb-4d92-4ebc-b060-af23d8a52f48" />
+
+- Top Searches banner:
+  <img width="1405" height="913" alt="image" src="https://github.com/user-attachments/assets/40703924-6755-4abb-9e5d-b1ca13bae784" />
+
+- Search results + multi-select:
+  <img width="1410" height="914" alt="image" src="https://github.com/user-attachments/assets/979fab94-1a52-45b9-813d-8ce2674dc8ec" />
+
+- Search history section:
+  <img width="1411" height="912" alt="image" src="https://github.com/user-attachments/assets/dcbae5e9-cdc5-462d-ac83-a4d64c87ffb2" />
+
 
 ## Notes
 - Sessions are persistent (30 days). Cookie name: `picfindr.sid`.
