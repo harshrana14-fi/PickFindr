@@ -38,23 +38,23 @@ export const SearchPage: React.FC = () => {
 
 	// Perform search function
 	async function performSearch(searchTerm: string) {
-		setError(null);
+        setError(null);
 		if (!searchTerm.trim()) return;
-		try {
-			setLoading(true);
+        try {
+            setLoading(true);
 			const { data } = await api.post('/search', { term: searchTerm.trim() });
-			setResults(data.results || []);
-			setLast(data.term);
-			setSelected({});
-		} catch (err: any) {
-			if (err?.response?.status === 401) {
-				setError('Please log in to search images.');
-			} else {
-				setError('Search failed. Please try again.');
-			}
-		} finally {
-			setLoading(false);
-		}
+            setResults(data.results || []);
+            setLast(data.term);
+            setSelected({});
+        } catch (err: any) {
+            if (err?.response?.status === 401) {
+                setError('Please log in to search images.');
+            } else {
+                setError('Search failed. Please try again.');
+            }
+        } finally {
+            setLoading(false);
+        }
 	}
 
 	// Handle navigation from history page
@@ -134,11 +134,11 @@ export const SearchPage: React.FC = () => {
                                 <path d="M9 17C13.4183 17 17 13.4183 17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                                 <path d="M19 19L14.65 14.65" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
-                            <input
-                                type="text"
+                    <input
+                        type="text"
                                 placeholder={user ? "Search for images..." : "Sign in to search images"}
-                                value={term}
-                                onChange={(e) => setTerm(e.target.value)}
+                        value={term}
+                        onChange={(e) => setTerm(e.target.value)}
                                 className="search-input"
                                 disabled={!user}
                             />
@@ -165,9 +165,9 @@ export const SearchPage: React.FC = () => {
                                         </svg>
                                     </>
                                 )}
-                            </button>
+                    </button>
                         </div>
-                    </form>
+                </form>
 
                     {!hasSearched && user && (
                         <div className="suggestions-section">
@@ -263,11 +263,11 @@ export const SearchPage: React.FC = () => {
 
                 {hasResults && (
                     <div className="images-grid">
-                        {results.map((img) => (
+                    {results.map((img) => (
                             <div key={img.id} className={`image-card ${selected[img.id] ? 'selected' : ''}`}>
                                 <div className="image-wrapper">
-                                    <img
-                                        src={img.src || img.thumb || ''}
+                            <img
+                                src={img.src || img.thumb || ''}
                                         alt={img.alt || 'Image'}
                                         className="image"
                                         loading="lazy"
@@ -303,9 +303,9 @@ export const SearchPage: React.FC = () => {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
-                    </div>
+                        </div>
+                    ))}
+                </div>
                 )}
 
                 {loading && hasSearched && (

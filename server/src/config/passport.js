@@ -1,7 +1,6 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const GitHubStrategy = require('passport-github2').Strategy;
-const FacebookStrategy = require('passport-facebook').Strategy;
 const User = require('../models/User');
 
 passport.serializeUser((user, done) => {
@@ -42,8 +41,6 @@ function configurePassport() {
 		GOOGLE_CLIENT_SECRET,
 		GITHUB_CLIENT_ID,
 		GITHUB_CLIENT_SECRET,
-		FACEBOOK_CLIENT_ID,
-		FACEBOOK_CLIENT_SECRET,
 		OAUTH_CALLBACK_BASE = 'http://localhost:4000',
 	} = process.env;
 
@@ -92,30 +89,6 @@ function configurePassport() {
     } else {
         // Warn if GitHub is not configured so routes can handle gracefully
         console.warn('[auth] GitHub OAuth not configured (missing GITHUB_CLIENT_ID/GITHUB_CLIENT_SECRET)');
-    }
-
-    if (FACEBOOK_CLIENT_ID && FACEBOOK_CLIENT_SECRET) {
-		passport.use(
-			new FacebookStrategy(
-				{
-					clientID: FACEBOOK_CLIENT_ID,
-					clientSecret: FACEBOOK_CLIENT_SECRET,
-					callbackURL: `${OAUTH_CALLBACK_BASE}/api/auth/facebook/callback`,
-					profileFields: ['id', 'displayName', 'emails', 'photos'],
-				},
-				async (_accessToken, _refreshToken, profile, done) => {
-					try {
-						const user = await findOrCreateUser({ provider: 'facebook', profile });
-						return done(null, user);
-					} catch (err) {
-						return done(err);
-					}
-				}
-			)
-		);
-    } else {
-        // Warn if Facebook is not configured so routes can handle gracefully
-        console.warn('[auth] Facebook OAuth not configured (missing FACEBOOK_CLIENT_ID/FACEBOOK_CLIENT_SECRET)');
     }
 }
 

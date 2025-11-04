@@ -44,8 +44,7 @@ const Header: React.FC = () => {
                     ) : (
                         <>
                             <a className="btn" href={`${serverOrigin}/api/auth/google`} style={{ marginRight: 8 }}>Google</a>
-                            <a className="btn" href={`${serverOrigin}/api/auth/github`} style={{ marginRight: 8 }}>GitHub</a>
-                            <a className="btn" href={`${serverOrigin}/api/auth/facebook`}>Facebook</a>
+                            <a className="btn" href={`${serverOrigin}/api/auth/github`}>GitHub</a>
                         </>
                     )}
                 </div>
