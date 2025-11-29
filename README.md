@@ -44,45 +44,7 @@ A full‑stack MERN application with OAuth (Google, GitHub), persistent sessions
 - Unsplash developer account + Access Key
 - OAuth apps for Google, GitHub (optional to start; you can enable any subset)
 
-## Environment Variables
 
-### Server (`server/.env`)
-```
-# Server
-NODE_ENV=development
-PORT=4000
-CLIENT_ORIGIN=http://localhost:5173
-OAUTH_CALLBACK_BASE=http://localhost:4000
-
-# MongoDB
-MONGO_URI=mongodb+srv://iamtonystark250_db_user:khai1SJ5AO3UNTCx@cluster0.vk6r00m.mongodb.net/?appName=Cluster0
-SESSION_SECRET=1aaexI1SvB
-SESSION_NAME=picfindr.sid
-
-# Unsplash
-UNSPLASH_ACCESS_KEY=L-G1h7fupI9RCQSCpIVaXDQuWm0jZHdFOrJPYt2gfPU
-UNSPLASH_SECRET_KEY=7xTimToZ80tS_a_mZlTRXW3wyxSfNmH5NmUezotml94
-
-# Google OAuth
-GOOGLE_CLIENT_ID=104737517393-tavpteb8v591q2i4nhi6vvbgo6o14i2s.apps.googleusercontent.com
-GOOGLE_CLIENT_SECRET=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
-GOOGLE_CALLBACK_PATH=/auth/google/callback
-
-# GitHub OAuth
-GITHUB_CLIENT_ID=Ov23li0Zr6blfzhyXoHs
-GITHUB_CLIENT_SECRET=ca29c351352e7fb4b457e4d43b5b48be7d9b452a
-GITHUB_CALLBACK_PATH=/auth/github/callback
-
-```
-Notes:
-- Callback URLs will be `${OAUTH_CALLBACK_BASE}${*_CALLBACK_PATH}`
-  - Example: `http://localhost:4000/auth/google/callback`
-- `SESSION_NAME` must match clearing logic in logout.
-
-### Client (`client/.env`)
-```
-VITE_SERVER_ORIGIN=http://localhost:4000
-```
 
 ## OAuth App Configuration
 Configure any of the providers you wish to support:
