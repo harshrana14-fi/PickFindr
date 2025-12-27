@@ -146,9 +146,6 @@ Add screenshots/GIFs to `docs/` and update the links below (or keep the placehol
 - Home Page :
   <img width="1439" height="908" alt="image" src="https://github.com/user-attachments/assets/0977cec2-310f-4d90-8210-13d7728754d9" />
 
-- OAuth login:
- <img width="1579" height="966" alt="image" src="https://github.com/user-attachments/assets/ffaf9afb-4d92-4ebc-b060-af23d8a52f48" />
-
 - Top Searches banner:
   <img width="1405" height="913" alt="image" src="https://github.com/user-attachments/assets/40703924-6755-4abb-9e5d-b1ca13bae784" />
 
